@@ -53,23 +53,23 @@ fn _color_calc(x: u32, y: u32, index: usize, img: &DynamicImage) -> u8 {
 fn main() {
 
 
-    let path = Path::new("C:\\Users\\amomomogugus\\Desktop\\laba5-images-with-mask\\image_mask\\src\\1.jpg");
+    let path = Path::new("1.jpg");
     
     let mut _img = ImageReader::open(&path).expect("Failed to open image").decode().expect("Failed to decode image");
 
     let _width = _img.width();
     let _height = _img.height();
     
-    let ref _img_clone = _img.clone();
 
     for x in 1..(_width-1) {
         for y in 1..(_height-1) {
+            let ref _img_clone = _img.clone();
             let _pixel = Rgba([_color_calc(x, y, 0, _img_clone), _color_calc(x, y, 1, _img_clone), _color_calc(x, y, 2, _img_clone), 255]);
             _img.put_pixel(x, y, _pixel);
         }
     }
 
-    let output_path = Path::new("C:\\Users\\amomomogugus\\Desktop\\laba5-images-with-mask\\image_mask\\src\\output.png");
+    let output_path = Path::new("output.png");
     _img.save(output_path).unwrap();
         
 }
